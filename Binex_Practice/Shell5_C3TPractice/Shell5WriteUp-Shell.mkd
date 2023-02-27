@@ -1,7 +1,7 @@
 # Shell5 (C3T practice challenge)
 - Category : Binary Exploitation  	
 - Points : 200
-- Flag:
+- Flag: c3t{f653b000}
 
 ## Challenge
 
@@ -31,7 +31,7 @@ Hint: How can we compute where the `print_flag` is with the address of main?
 
 ## Thoughts
 
-This was probably the first time I had any understanding of what binary exploitation was. I was extremely confused during the last two practices, but today single handedly instilled some confidience back. I thought it was really cool to work with python to receive and send information aswell as working through the binary to try and find multiple memory locations. 
+This was probably the first time I had any understanding of what binary exploitation was. I was extremely confused during the last two practices, but today single handedly instilled some confidience within me. I thought it was really cool to work with python to receive and send information aswell as working through the binary to try and find multiple memory locations. 
 
 
 
