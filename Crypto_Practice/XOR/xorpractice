@@ -1,0 +1,27 @@
+from binascii import unhexlify
+
+flag = "redacted"
+p1 = b"Hunting unicorns is legal in Michigan"
+key = b"redacted"
+c1 = bytes((a ^ b for (a, b) in zip(key, p1))).hex()
+c2 = bytes((a ^ b for (a, b) in zip(key, flag.encode()))).hex()
+
+
+
+
+p1= b'Hunting unicorns is legal in Michigan'
+c1= "1e10001000000000180f0a0b061c0b00000801454c070e060b451b4e54251b06091d14411a"
+c2= "3c101d1036080e4e04120b0d0d31111b4912"
+
+#We need to find the key given the plaintext and ciphertext, and use the key to decoce the cipher text (c1 and c2) to get the flag. 
+#xor p1 and c1 to get the key 
+#xor c2 and key to get the flag 
+
+c1 = unhexlify(c1)
+c2 = unhexlify(c2) 
+
+key = bytes(p1 ^ c1 for (p1,c1) in zip(c1, p1))
+print(key)
+flag = bytes(c2 ^ key for (c2, key) in zip(c2,key)).decode()
+print(flag)
+#print(key.decode())
