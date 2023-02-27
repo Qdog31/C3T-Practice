@@ -1,0 +1,12 @@
+objdump -d -Mintel shell2 |grep -B1 mmap
+
+from this command, we see that 0x410000 is being moved into edi. 
+
+From here, we can put 0x410000 back into the shell1.asm file. 
+
+The 0x410000 is the buffer, so when we insert it into the shell1.asm file, it is getting us the print_flag function. 
+
+Then, in the answer.py script, we can connect to the ip with the specified port, open the shell file, read it, send the info, and shutdown to activate our exploit. Then, it prints the flag for us. 
+
+flag: flag{6adff127} 
+

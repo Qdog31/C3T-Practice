@@ -1,0 +1,14 @@
+  401236:	f3 0f 1e fa          	endbr64 
+  40123a:	55                   	push   rbp
+  40123b:	48 89 e5             	mov    rbp,rsp
+  40123e:	48 83 ec 60          	sub    rsp,0x60
+
+We can see the above code within the shell3 file so we know that this is the start of a function. Then, we need to move that location to a different library so we do the below code: 
+
+[BITS 64]
+mov rax,0x401236
+call (rax)
+
+we used: nasm shell4.asm to compile the file into machine code 
+ 
+We move the print_flag function into rax so we can call it directly. 

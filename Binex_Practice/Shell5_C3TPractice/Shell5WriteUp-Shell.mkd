@@ -1,0 +1,37 @@
+# Shell5 (C3T practice challenge)
+- Category : Binary Exploitation  	
+- Points : 200
+- Flag:
+
+## Challenge
+
+This server is waiting for you to send shellcode. Can you get it to execute? Enough of these insecure binaries with ALSR disabled. We've made our compiled program available for download. You can connect to the problem at telnet cmgr. c3t.eecs.net 25852 or nc cmgr.c3t.eecs.net 25852. 
+
+Hint: How can we compute where the `print_flag` is with the address of main? 
+
+## Solve
+
+1) I started by downloading the compiled program and opening it in `ghedra`. 
+
+2) We know that every function has to start at entry because thats how the program knows where to enter and begin. Based off this we can find main. 
+
+3) After being within the area of the entry function, I saw the LEA RDI, FUN_0010133d line which puts main address into RDI, which then gets called. We know it gets called because the very next function call is `CALL` which calls  libc_start_main. I then renamed this address as `MAIN` for simplicity. 
+
+    ```Main location: 0x10133d``` 
+
+
+4) Now I needed to find the memory location of print flag. I knew this function needed to call the flag.txt file so I did a string search for "flag.txt" in the file memory. I did this by going to `Search` -> `Memory` and typing in "flag.txt" as the search value with the format of string. This got me the address associated with the printflag function. 
+
+    ```Printflag function location: 0x101269```
+
+5) I then put the two addresses within an online hex calculator so that I could find the `offset` between these two memory locations. (I used: https://www.calculator.net/hex-calculator.html?number1=1010133d&c2op=-&number2=101269&calctype=op&x=95&y=17). This returned with an offset of `100000D4`. 
+
+6) Now it is time for making the python script to receive the dynamically changing main memory location and send back the file with our exploit. While making the script I learned that within the python interpreter you can do: help (what you wanna learn). Ex: `help(int)` to learn about ints within python. 
+
+
+## Thoughts
+
+This was probably the first time I had any understanding of what binary exploitation was. I was extremely confused during the last two practices, but today single handedly instilled some confidience back. I thought it was really cool to work with python to receive and send information aswell as working through the binary to try and find multiple memory locations. 
+
+
+
